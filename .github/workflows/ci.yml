@@ -16,19 +16,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup .NET Framework
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '4.x'
-
       - name: Install dependencies
-        run: dotnet restore
+        run: nuget restore JMWPlayer.sln
 
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: msbuild /p:Configuration=Release JMWPlayer.sln
 
       - name: Publish
-        run: dotnet publish --configuration Release --no-restore --output ./output
+        run: msbuild /t:Publish /p:Configuration=Release /p:PublishDir=./output JMWPlayer.sln
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2

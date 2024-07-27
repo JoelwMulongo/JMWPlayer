@@ -3,11 +3,16 @@ using System.Windows.Forms;
 
 namespace JMWPlayer
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            openFileDialog1.Multiselect = true;
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
@@ -29,9 +34,9 @@ namespace JMWPlayer
             wmp.Ctlcontrols.stop();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void btnOpenFiles_Click(object sender, EventArgs e)
         {
-            openFileDialog1.Multiselect = true;
+            openFileDialog1.ShowDialog();
         }
 
         private void lstFiles_DoubleClick(object sender, EventArgs e)
@@ -45,11 +50,6 @@ namespace JMWPlayer
             {
                 lstFiles.Items.Add(file);
             }
-        }
-
-        private void btnOpenFiles_Click(object sender, EventArgs e)
-        {
-            openFileDialog1.ShowDialog();
         }
     }
 }
